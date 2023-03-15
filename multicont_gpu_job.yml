@@ -17,11 +17,11 @@ spec:
           resources:
             limits:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
             requests:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
@@ -36,11 +36,11 @@ spec:
           resources:
             limits:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
             requests:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
@@ -55,11 +55,11 @@ spec:
           resources:
             limits:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
             requests:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
@@ -74,11 +74,11 @@ spec:
           resources:
             limits:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
             requests:
               memory: 8Gi
-              cpu: 2
+              cpu: 4
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
