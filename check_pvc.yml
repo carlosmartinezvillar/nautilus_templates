@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: check-pvc-pod
+spec:
+  containers:
+
+  #container name
+  - name: container-0
+    image: gitlab-registry.nrp-nautilus.io/martinezci/img-processor:latest
+
+    #enviroment variables
+    env:
+      - name: DATA_DIR
+        value: /data
+
+    #container resource request
+    resources:
+      limits:
+        memory: 8Gi
+        cpu: 8
+      requests:
+        memory: 8Gi
+        cpu: 8
+
+    #dir to mount pvc
+    volumeMounts:
+    - mountPath: /data
+      name: <my-vol-name>
+
+    #command to execute after container start
+    command: ["sh", "-c", "sleep infinity"]
+
+
+  #which pvc to point to 
+  volumes:
+    - name: <my-vol-name>
+      persistentVolumeClaim:
+        claimName: <the-actual-pvc-name>

@@ -1,11 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: dynamicworld
+  name: <the-actual-pvc-name>
+  namespace: <your-namespace>
 spec:
-  storageClassName: rook-ceph-block
+  storageClassName: rook-cephfs
   accessModes:
   - ReadWriteMany
   resources:
     requests:
-      storage: 500Gi
+      storage: 1Ti
