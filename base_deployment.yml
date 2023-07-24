@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-<username>
+  labels:
+    k8s-app: dep-<username>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: dep-<username>
+  template:
+    metadata: 
+      labels:
+        k8s-app: dep-<username>
+    spec:
+      containers:
+      - name: mypod
+        image: centos:centos7
+        resources:
+           limits:
+             memory: 1.5Gi
+             cpu: 1
+           requests:
+             memory: 0.5Gi
+             cpu: 0.1
+        command: ["sh", "-c", "sleep infinity"]
+

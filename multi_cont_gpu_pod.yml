@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: gputest-cimv
+
+spec:
+  containers:
+    - name: pt-cont0
+      image: gitlab-registry.nrp-nautilus.io/martinezci/cuda11.7base-ubuntu20.04:latest
+      imagePullPolicy: IfNotPresent
+      resources:
+        limits:
+          memory: 8Gi
+          cpu: 4
+          nvidia.com/gpu: 1
+        requests:
+          memory: 8Gi
+          cpu: 4
+          nvidia.com/gpu: 1
+      env:
+        - name: CONTAINER_ID
+          value: cont0
+      command: ["sh","-c","sleep infinity"]
+
+    - name: pt-cont1
+      image: gitlab-registry.nrp-nautilus.io/martinezci/cuda11.7base-ubuntu20.04:latest
+      imagePullPolicy: IfNotPresent
+      resources:
+        limits:
+          memory: 8Gi
+          cpu: 4
+          nvidia.com/gpu: 1
+        requests:
+          memory: 8Gi
+          cpu: 4
+          nvidia.com/gpu: 1
+      env:
+        - name: CONTAINER_ID
+          value: cont1
+      command: ["sh","-c","sleep infinity"]
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                  - NVIDIA-GeForce-RTX-3090
+
