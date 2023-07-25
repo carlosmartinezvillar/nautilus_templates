@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: copy-pod
+spec:
+
+  containers:
+
+    #container name/image
+    - name: rclone-pod
+      image: docker.io/cimartinezvillar/img-processor:latest
+
+      #env variables
+      env:
+        - name: DATA_DIR
+          value: /data
+
+      #container limit/request
+      resource:
+        limits:
+          memory: 8Gi
+          cpu: 16
+        requests:
+          memory: 8Gi
+          cpu: 16
+
+      #container vol mounts
+      volumeMounts:
+        - mountPath: /data
+          name: <my-vol-name>
+
+      #execute after init
+      command: ["sh", "-c", "sleep infinity"]
+
+  #pvc
+  volumes:
+    - name: <my-vol-name>
+    persistentVolumeClaim:
+    claimName: <actual-pvc-name>
