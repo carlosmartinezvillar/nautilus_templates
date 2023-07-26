@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 
 metadata:
-  name: job0
+  name: train-job-0
 
 spec:
   backoffLimit: 0
@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
 
-        - name: c0
+        - name: C0
           image: gitlab-registry.nrp-nautilus.io/martinezci/cuda11.7base-ubuntu20.04:latest
           imagePullPolicy: IfNotPresent
           resources:
@@ -25,12 +25,12 @@ spec:
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
-              value: cont0
+              value: 0
             - name: JOB_ID
-              value: job0
+              value: 0
           command: ["python3","test_script.py"]
 
-        - name: c1
+        - name: C1
           image: gitlab-registry.nrp-nautilus.io/martinezci/cuda11.7base-ubuntu20.04:latest        
           imagePullPolicy: IfNotPresent
           resources:
@@ -44,12 +44,12 @@ spec:
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
-              value: cont1
+              value: 1
             - name: JOB_ID
-              value: job0  
+              value: 0  
           command: ["python3","test_script.py"]
 
-        - name: c2
+        - name: C2
           image: gitlab-registry.nrp-nautilus.io/martinezci/cuda11.7base-ubuntu20.04:latest        
           imagePullPolicy: IfNotPresent
           resources:
@@ -63,12 +63,12 @@ spec:
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
-              value: cont2
+              value: 2
             - name: JOB_ID
-              value: job0      
+              value: 0      
           command: ["python3","test_script.py"]
 
-        - name: c3
+        - name: C3
           image: gitlab-registry.nrp-nautilus.io/martinezci/cuda11.7base-ubuntu20.04:latest        
           imagePullPolicy: IfNotPresent
           resources:
@@ -82,9 +82,9 @@ spec:
               nvidia.com/gpu: 1
           env:
             - name: CONTAINER_ID
-              value: cont3
+              value: 3
             - name:JOB_ID
-              value: job0
+              value: 0
           command: ["python3","test_script.py"]
 
       affinity:

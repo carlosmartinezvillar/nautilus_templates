@@ -7,9 +7,8 @@ spec:
   containers:
 
     #container name/image
-    - name: rclone-pod
-      image: docker.io/cimartinezvillar/img-processor:latest
-
+    - name: s3-container
+      image: rclone/rclone
       #env variables
       env:
         - name: DATA_DIR
